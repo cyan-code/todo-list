@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>todo-list</title>
+  <title>待办事项</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
@@ -15,18 +15,20 @@
     <!-- 头部标题 -->
     <section class="hero is-dark">
       <div class="hero-body">
-        <div class="columns">
-          <div class="column is-flex">
-            <figure class="image is-64x64 mr-4">
-              <img src="ztw.jpg" alt="ZTW">
-            </figure>
-            <div class="txt">
-              <p class="title">
-                TODOLIST
-              </p>
-              <p class="subtitle">
-                Created By Cyan
-              </p>
+        <div class="container">
+          <div class="columns">
+            <div class="column is-flex">
+              <figure class="image is-64x64 mr-4">
+                <img src="ztw.jpg" alt="ZTW">
+              </figure>
+              <div class="txt">
+                <p class="title">
+                  TODOLIST
+                </p>
+                <p class="subtitle">
+                  Created By Cyan
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -36,23 +38,39 @@
     <!-- 卡片部分 -->
     <div class="container">
       <!-- 搜索框 -->
-      <div class="field is-grouped mt-2">
-        <p class="control">
-          <input class="input is-dark" 
-                type="text" 
-                placeholder="请输入待办事项"
-                v-model="newTodo"
-                @keyup.enter="addNewTodos"
-                ref="newTodoInput"
-          >
-        </p>
-        <p class="control">
-          <a class="button is-dark"
-            @click="addNewTodos"
-          >
-            新增
-          </a>
-        </p>
+      <div class="columns mt-1 is-multiline">
+        <div class="column is-6">
+          <div class="field is-grouped">
+            <p class="control is-expanded">
+              <input class="input is-dark" 
+                    type="text" 
+                    placeholder="请输入待办事项"
+                    v-model="newTodo"
+                    @keyup.enter="addNewTodos"
+                    ref="newTodoInput"
+              >
+            </p>
+            <p class="control">
+              <a class="button is-dark"
+                @click="addNewTodos"
+              >
+                新增
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="column is-3 is-offset-3">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input is-dark" type="text" placeholder="查找待办事项">
+            </div>
+            <div class="control">
+              <a class="button is-dark">
+                🔍
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- 卡片 -->
       <div class="columns is-multiline">
