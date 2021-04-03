@@ -45,7 +45,7 @@ const App = new Vue({
         content: this.newTodo,
         isDone: false
       }
-      this.todos.push(item) // 将新代办push到data
+      this.todos.unshift(item) // 将新代办push到data
       this.newTodo = ""// 删除input框中的内容
       this.$refs.newTodoInput.focus()
     }
