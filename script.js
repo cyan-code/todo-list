@@ -11,20 +11,55 @@ const App = new Vue({
       isDone: false
     },{
       id: Math.random(),
-      content: '唱歌',
+      content: '旅游',
+      isDone: true
+    },{
+      id: Math.random(),
+      content: '买菜',
+      isDone: false
+    },{
+      id: Math.random(),
+      content: '烧饭',
+      isDone: true
+    },{
+      id: Math.random(),
+      content: '敲代码',
       isDone: false
     }],
     newTodo: "",
     isSuccessModalActive: false, // 控制添加modal框是否显示
     isDelModalActive: false,
-    todoToBeDelId: '' // 当点击删除后，待删除的todo的id
+    todoToBeDelId: '', // 当点击删除后，待删除的todo的id
+    isSuccessModalAnimate: '',
+    searchTxt: '',
+    // showSearchResult: false
   },
   computed: {
     finishedTodos() {
-      return this.todos.filter(todo => todo.isDone === true)
+      /* if (this.showSearchResult) {
+        return this.todos.filter(todo => {
+          return todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1
+        })
+      }
+      else {
+        return this.todos.filter(todo => todo.isDone === true)
+      } */
+      return this.todos.filter(todo => {
+        return todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1
+      })
     },
     unfinishedTodos () {
-      return this.todos.filter(todo => todo.isDone != true)
+      /* if (this.showSearchResult) {
+        return this.todos.filter(todo => {
+          return todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1
+        })
+      }
+      else {
+        return this.todos.filter(todo => todo.isDone != true)
+      } */
+      return this.todos.filter(todo => {
+        return todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1
+      })
     }
   },
   methods: {
@@ -64,8 +99,20 @@ const App = new Vue({
       this.todos.unshift(item) // 将新代办push到data
       this.newTodo = ""// 删除input框中的内容
       this.isSuccessModalActive = true
-      setTimeout(()=> {this.isSuccessModalActive = false}, 1000) // 1s后结束
+      setTimeout(() => {
+        this.isSuccessModalAnimate = true
+      }, 1000);
+      setTimeout(()=> {
+        this.isSuccessModalAnimate = false
+        this.isSuccessModalActive = false
+      }, 1300) // 1s后结束
       this.$refs.newTodoInput.focus()
     }
+  },
+  beforeCreate: function () {
+    // 阻止手机上缩放
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault()
+  })
   }
 })

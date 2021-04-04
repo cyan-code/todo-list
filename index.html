@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>待办事项</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -63,11 +63,11 @@
         <div class="column is-3 is-offset-3">
           <div class="field has-addons">
             <div class="control is-expanded">
-              <input class="input is-dark" type="text" placeholder="查找待办事项">
+              <input class="input is-dark" type="text" placeholder="查找待办事项" v-model="searchTxt">
             </div>
-            <div class="control">
-              <a class="button is-dark">
-                🔍
+            <div class="control ml-1">
+              <a class="button is-dark" @click="searchTxt=''">
+                显示全部
               </a>
             </div>
           </div>
@@ -113,7 +113,7 @@
               </div>
             </div>
             <div class="panel-block is-flex is-justify-content-center" v-else>
-              <p class="my-6">全部完成了！</p>
+              <p class="my-6">没有未完成事项</p>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
     </div>
     <div class="modal" :class="isSuccessModalActive ? 'is-active' : '' ">
       <div class="modal-background"></div>
-      <div class="modal-content animate__animated animate__fadeInUp animate__faster">
+      <div class="modal-content animate__animated animate__fadeInUp animate__faster" :class="isSuccessModalAnimate ? 'animate__animated animate__fadeOutUp' : ''">
         <div class="notification">
           <span>添加成功！</span>
         </div>
