@@ -59,9 +59,9 @@ const App = new Vue({
       }
       this.todos.unshift(item) // 将新代办push到data
       this.newTodo = ""// 删除input框中的内容
-      this.$refs.newTodoInput.focus()
       this.isSuccessModalActive = true
       setTimeout(()=> {this.isSuccessModalActive = false}, 1000) // 1s后结束
+      this.$refs.newTodoInput.focus()
     }
   }
 })

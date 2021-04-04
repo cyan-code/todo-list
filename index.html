@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>待办事项</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
@@ -87,7 +88,7 @@
           <div class="panel is-dark">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span >未完成</span>
-              <span class="tag is-normal ml-1" style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
+              <span class="tag is-normal ml-1" v-cloak style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
             </div>
             <div class="panel-block" style="display: block;" v-if="unfinishedTodos != '' ">
               <div class="columns is-multiline">
@@ -97,7 +98,7 @@
                 >
                   <div class="card">
                     <div class="card-content">
-                      <p class="subtitle">
+                      <p class="subtitle" v-cloak>
                         {{todo.content}}
                       </p>
                     </div>
@@ -106,6 +107,7 @@
                         <button class="button" 
                                 :class="todo.isDone ? '' : 'is-light' "
                                 @click="toggleDone(todo.id)"
+                                v-cloak
                         >标为{{todo.isDone ? '未' : '已'}}完成
                       </button>
                       </p>
@@ -127,7 +129,7 @@
           <div class="panel">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span>已完成</span>
-              <span class="tag is-dark ml-1" style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
+              <span class="tag is-dark ml-1" v-cloak style="vertical-align:text-top;">{{finishedTodos.length}}</span>
             </div>
             <div class="panel-block" style="display: block;" v-if="finishedTodos != '' ">
               <div class="columns is-multiline">
@@ -137,7 +139,7 @@
                 >
                   <div class="card">
                     <div class="card-content">
-                      <p class="subtitle" style="text-decoration:line-through">
+                      <p class="subtitle" v-cloak style="text-decoration:line-through">
                         {{todo.content}}
                       </p>
                     </div>
@@ -146,6 +148,7 @@
                         <button class="button" 
                                 :class="todo.isDone ? '' : 'is-light' "
                                 @click="toggleDone(todo.id)"
+                                v-cloak
                         >标为{{todo.isDone ? '未' : '已'}}完成
                       </button>
                       </p>
