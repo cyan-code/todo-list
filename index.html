@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
-
 <body>
 <div id="app">
     <!-- 头部标题 -->
@@ -26,7 +25,7 @@
                   TODOLIST
                 </p>
                 <p class="subtitle">
-                  Created By Cyan
+                  Created By <a href="https://gitee.com/cyanzhn">Cyan</a>
                 </p>
               </div>
             </div>
@@ -57,6 +56,14 @@
                 新增
               </a>
             </p>
+            <div class="modal" :class="isSuccessModalActive ? 'is-active' : '' ">
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <div class="notification is-black">
+                  <span>添加成功！</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="column is-3 is-offset-3">
@@ -78,7 +85,10 @@
         <!-- 左边未完成 -->
         <div class="column is-6">
           <div class="panel is-dark">
-            <div class="panel-heading">未完成</div>
+            <div class="panel-heading is-flex is-justify-content-space-between">
+              <span >未完成</span>
+              <span class="tag is-normal ml-1" style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
+            </div>
             <div class="panel-block" style="display: block;" v-if="unfinishedTodos != '' ">
               <div class="columns is-multiline">
                 <div class="column is-6" 
@@ -115,7 +125,10 @@
         <!-- 右边已完成 -->
         <div class="column is-6">
           <div class="panel">
-            <div class="panel-heading">已完成</div>
+            <div class="panel-heading is-flex is-justify-content-space-between">
+              <span>已完成</span>
+              <span class="tag is-dark ml-1" style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
+            </div>
             <div class="panel-block" style="display: block;" v-if="finishedTodos != '' ">
               <div class="columns is-multiline">
                 <div class="column is-6" 
@@ -148,6 +161,14 @@
               <p class="my-6">没有已完成事项</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" :class="isDelModalActive ? 'is-active' : '' ">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="notification is-black">
+          <span>删除成功！</span>
         </div>
       </div>
     </div>

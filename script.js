@@ -15,6 +15,8 @@ const App = new Vue({
       isDone: false
     }],
     newTodo: "",
+    isSuccessModalActive: false, // 控制添加modal框是否显示
+    isDelModalActive: false
   },
   computed: {
     finishedTodos() {
@@ -33,6 +35,8 @@ const App = new Vue({
     },
     toggleDelete(id) {
       this.todos = this.todos.filter((todo) => todo.id != id)
+      this.isDelModalActive = true,
+      setTimeout(()=>{ this.isDelModalActive = false}, 1000)
     },
     addNewTodos() {
       // 判断为空不添加并提示
@@ -56,6 +60,8 @@ const App = new Vue({
       this.todos.unshift(item) // 将新代办push到data
       this.newTodo = ""// 删除input框中的内容
       this.$refs.newTodoInput.focus()
+      this.isSuccessModalActive = true
+      setTimeout(()=> {this.isSuccessModalActive = false}, 1000) // 1s后结束
     }
   }
 })
