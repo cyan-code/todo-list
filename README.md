@@ -1,5 +1,4 @@
-# a simple todo editor build with Bulma and Vue
-**需求：**实现待办事项新增、删除、切换是否完成
+**功能：**实现待办事项新增、删除、切换是否完成
 
 **项目逻辑：**
 
