@@ -16,6 +16,14 @@ const App = new Vue({
     }],
     newTodo: "",
   },
+  computed: {
+    finishedTodos() {
+      return this.todos.filter(todo => todo.isDone === true)
+    },
+    unfinishedTodos () {
+      return this.todos.filter(todo => todo.isDone != true)
+    }
+  },
   methods: {
     toggleDone(id) {
       this.todos.map((todo) => {
