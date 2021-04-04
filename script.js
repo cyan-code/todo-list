@@ -16,7 +16,8 @@ const App = new Vue({
     }],
     newTodo: "",
     isSuccessModalActive: false, // 控制添加modal框是否显示
-    isDelModalActive: false
+    isDelModalActive: false,
+    todoToBeDelId: '' // 当点击删除后，待删除的todo的id
   },
   computed: {
     finishedTodos() {
@@ -33,10 +34,13 @@ const App = new Vue({
         return todo
       })
     },
-    toggleDelete(id) {
-      this.todos = this.todos.filter((todo) => todo.id != id)
-      this.isDelModalActive = true,
-      setTimeout(()=>{ this.isDelModalActive = false}, 1000)
+    toggleDelModal(id) {
+      this.isDelModalActive =true;
+      this.todoToBeDelId = id
+    },
+    toggleDelete() {
+      this.todos = this.todos.filter((todo) => todo.id != this.todoToBeDelId)
+      this.isDelModalActive =false
     },
     addNewTodos() {
       // 判断为空不添加并提示

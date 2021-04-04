@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>待办事项</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 <div id="app">
     <!-- 头部标题 -->
-    <section class="hero is-dark">
+    <section class="hero is-dark animate__animated animate__bounceInDown">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
@@ -38,7 +39,7 @@
     <!-- 卡片部分 -->
     <div class="container">
       <!-- 搜索框 -->
-      <div class="columns mt-1 is-multiline">
+      <div class="columns mt-1 is-multiline animate__animated animate__bounceInLeft">
         <div class="column is-6">
           <div class="field is-grouped">
             <p class="control is-expanded">
@@ -57,14 +58,6 @@
                 新增
               </a>
             </p>
-            <div class="modal" :class="isSuccessModalActive ? 'is-active' : '' ">
-              <div class="modal-background"></div>
-              <div class="modal-content">
-                <div class="notification is-black">
-                  <span>添加成功！</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div class="column is-3 is-offset-3">
@@ -84,11 +77,11 @@
       <!-- 左右布局 -->
       <div class="columns">
         <!-- 左边未完成 -->
-        <div class="column is-6">
+        <div class="column is-6 animate__animated animate__bounceInLeft">
           <div class="panel is-dark">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span >未完成</span>
-              <span class="tag is-normal ml-1" v-cloak style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
+              <span v-cloak class="tag is-normal ml-1" style="vertical-align:text-top;">{{unfinishedTodos.length}}</span>
             </div>
             <div class="panel-block" style="display: block;" v-if="unfinishedTodos != '' ">
               <div class="columns is-multiline">
@@ -112,7 +105,7 @@
                       </button>
                       </p>
                       <p class="card-footer-item">
-                        <button class="button is-dark" @click="toggleDelete(todo.id)">删除</button>
+                        <button class="button is-dark" @click="toggleDelModal(todo.id)">删除</button>
                       </p>
                     </footer>
                   </div>
@@ -125,7 +118,7 @@
           </div>
         </div>
         <!-- 右边已完成 -->
-        <div class="column is-6">
+        <div class="column is-6 animate__animated animate__bounceInRight">
           <div class="panel">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span>已完成</span>
@@ -153,7 +146,7 @@
                       </button>
                       </p>
                       <p class="card-footer-item">
-                        <button class="button is-dark" @click="toggleDelete(todo.id)">删除</button>
+                        <button class="button is-dark" @click="toggleDelModal(todo.id)">删除</button>
                       </p>
                     </footer>
                   </div>
@@ -167,16 +160,30 @@
         </div>
       </div>
     </div>
-    <div class="modal" :class="isDelModalActive ? 'is-active' : '' ">
+    <div class="modal" :class="isSuccessModalActive ? 'is-active' : '' ">
       <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="notification is-black">
-          <span>删除成功！</span>
+      <div class="modal-content animate__animated animate__fadeInUp animate__faster">
+        <div class="notification">
+          <span>添加成功！</span>
         </div>
       </div>
     </div>
+    <div class="modal" :class="isDelModalActive ? 'is-active' : '' ">
+      <div class="modal-background"></div>
+      <div class="modal-card animate__animated animate__fadeInUp animate__faster">
+        <header class="modal-card-head">确认提示</header>
+        </header>
+        <section class="modal-card-body">
+          确认删除该待办事项？
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-danger" @click="toggleDelete">删除</button>
+          <button class="button is-dark" @click="isDelModalActive = false">取消</button>
+        </footer>
+      </div>
+    </div>
 </div>
-<footer class="footer" >
+<footer class="footer animate__animated animate__fadeInUp" >
   <div class="content has-text-centered">
     <p>
       <strong>TODOLIST</strong> by <a href="https://gitee.com/cyanzhn">Cyan</a>. The source code is licensed
