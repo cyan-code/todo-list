@@ -36,30 +36,10 @@ const App = new Vue({
   },
   computed: {
     finishedTodos() {
-      /* if (this.showSearchResult) {
-        return this.todos.filter(todo => {
-          return todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1
-        })
-      }
-      else {
-        return this.todos.filter(todo => todo.isDone === true)
-      } */
-      return this.todos.filter(todo => {
-        return todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1
-      })
+      return this.todos.filter(todo => todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1)
     },
     unfinishedTodos () {
-      /* if (this.showSearchResult) {
-        return this.todos.filter(todo => {
-          return todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1
-        })
-      }
-      else {
-        return this.todos.filter(todo => todo.isDone != true)
-      } */
-      return this.todos.filter(todo => {
-        return todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1
-      })
+      return this.todos.filter(todo => todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1)
     }
   },
   methods: {

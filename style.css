@@ -1,3 +1,6 @@
 [v-cloak] {
   display: none;
 }
+.v-move {
+  transition: transform 1s;
+}
