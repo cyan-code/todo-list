@@ -1,4 +1,4 @@
-name: syncGitee
+name: zsyncGitee
 
 on: page_build
 
