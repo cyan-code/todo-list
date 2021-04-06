@@ -1,6 +1,8 @@
-name: buildAndDeploy
+name: zbuildAndDeploy
+
 on:
   push
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # 我们选择使用最新的ubuntu系统
