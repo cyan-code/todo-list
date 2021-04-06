@@ -1,6 +1,8 @@
 name: syncGitee
 
-on: page_build
+on: 
+    push:
+        branches:[ gh-pages ]
 
 jobs:
   build:
