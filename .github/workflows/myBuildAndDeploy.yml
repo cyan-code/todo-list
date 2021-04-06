@@ -1,4 +1,4 @@
-name: zbuildAndDeploy
+name: myBuildAndDeploy
 
 on:
   push

@@ -1,6 +1,9 @@
-name: zsyncGitee
+name: mySyncGitee
 
-on: push
+on:
+  workflow_run:
+    workflows: ["myBuildAndDeploy"]
+    types: [completed]
 
 jobs:
   build:
