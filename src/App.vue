@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header/>
     <Search 
       @emitAddNewTodo="addNewTodos"
       @emitsetSearchTxt="setSearchTxt"
@@ -72,6 +72,7 @@ export default {
     todoToBeDelId: '', // 当点击删除后，待删除的todo的id
     isSuccessModalAnimate: '',
     searchTxt: '',
+    weatherInfo: ''
     // showSearchResult: false
   }
   },
@@ -143,6 +144,15 @@ export default {
     document.addEventListener('gesturestart', function (event) {
       event.preventDefault()
   })
+  },
+  created() {
+    this.$http.getWeather()
+      .then(res => {
+        this.weatherInfo = res
+        this.$myBus.$emit('sendWeather' , {weatherInfo: this.weatherInfo})
+      })
+      .catch(err => {console.log(err);})
+    
   }
 }
 </script>

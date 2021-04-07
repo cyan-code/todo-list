@@ -5,7 +5,7 @@
       <div class="hero-body">
         <div class="container">
           <div class="columns">
-            <div class="column is-flex">
+            <div class="column is-flex is-6">
               <figure class="image is-64x64 mr-4">
                 <img src="../assets/ztw.jpg" alt="ZTW">
               </figure>
@@ -18,6 +18,9 @@
                 </p>
               </div>
             </div>
+            <div class="column is-4 is-offset-2">
+              <Weather />
+            </div>
           </div>
         </div>
         
@@ -27,8 +30,12 @@
 </template>
 
 <script>
+import Weather from './Weather'
 export default {
-  name: 'Header'
+  name: 'Header',
+  components: {
+    Weather
+  }
 }
 </script>
 
