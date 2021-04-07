@@ -24,7 +24,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
+  mode: 'hash',
+  // 项目上线使用历史模式，开发基于hash模式
+  // mode: process.env.NODE_ENV === 'production' ? 'history' : 'hash',
   routes
 })
 
