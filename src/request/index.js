@@ -1,5 +1,5 @@
 import axios from 'axios'
-const ajax = axios.create({baseURL:'http://api.jirengu.com'})
+const ajax = axios.create({baseURL:'https://jirenguapi.applinzi.com'})
 const getWeather = () => ajax.get('/getWeather.php')
 
 
