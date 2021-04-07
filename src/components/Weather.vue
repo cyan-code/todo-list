@@ -19,19 +19,18 @@ export default {
     }
   },
   created() {
-    this.$myBus.$on('sendWeather', (res)=> {
-      this.countryName = res.weatherInfo.location.country
-      this.cityName = res.weatherInfo.location.city
-      this.nowTemp = res.weatherInfo.now.temp
-      this.nowWeather = res.weatherInfo.now.text
-
-    })
+    this.$http.getWeather()
+      .then(res => {
+        this.countryName = res.location.country
+        this.cityName = res.location.city
+        this.nowTemp = res.now.temp
+        this.nowWeather = res.now.text
+      })
+      .catch(err => {console.log(err);})
   }
 }
 </script>
 
 <style scoped>
-.weather {
-  text-align: right;
-}
+
 </style>

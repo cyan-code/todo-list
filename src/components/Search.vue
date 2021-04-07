@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-            <div class="columns mt-1 is-multiline animate__animated animate__bounceInLeft">
+            <div class="columns mt-1 is-multiline">
         <div class="column is-6">
           <div class="field is-grouped">
             <p class="control is-expanded">

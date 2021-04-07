@@ -44,8 +44,19 @@ export default {
   },
   filters: {
     showChnIsp(v) {
-      if(v === 'China Mobile') {
-        return '中国移动'
+      switch (v) {
+        case "China Mobile":
+          return '中国移动'
+          break;
+        case 'China Unicom':
+          return '中国联通'
+          break;
+        case 'China Telecom':
+          return '中国电信'
+          break;
+      
+        default: return v
+          break;
       }
     }
   },

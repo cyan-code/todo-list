@@ -3,7 +3,7 @@
     <div class="container">
       <div class="columns">
         <!-- 左边未完成 -->
-        <div class="column is-6 animate__animated animate__bounceInLeft">
+        <div class="column is-6">
           <div class="panel is-dark">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span >未完成</span>
@@ -46,7 +46,7 @@
           </div>
         </div>
         <!-- 右边已完成 -->
-        <div class="column is-6 animate__animated animate__bounceInRight">
+        <div class="column is-6">
           <div class="panel">
             <div class="panel-heading is-flex is-justify-content-space-between">
               <span>已完成</span>

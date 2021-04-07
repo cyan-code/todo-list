@@ -18,7 +18,7 @@
                 </p>
               </div>
             </div>
-            <div class="column is-4 is-offset-2">
+            <div class="column is-4-mobile is-offset-4 is-2-desktop">
               <Weather />
             </div>
           </div>
