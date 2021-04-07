@@ -2,6 +2,8 @@
   <div>
     <footer class="footer animate__animated animate__fadeInUp">
       <div class="content has-text-centered">
+        <p>您的IP: <b>{{ip}}</b></p>
+        <p>ISP: <b>{{isp | showChnIsp}}</b></p>
         <p>
           <strong>TODOLIST</strong> by
           <a href="https://gitee.com/cyanzhn">Cyan</a>. The source code is
@@ -19,7 +21,37 @@
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data() {
+    return {
+      isp: '',
+      ip: ''
+    }
+  },
+  methods: {
+    getIp() {
+      fetch('http://ip-api.com/json/?lang=zh-CN')
+        .then(resp => resp.json())
+        .then(resp => {
+          if(resp.status === 'success') {
+            this.isp = resp.isp
+            this.ip = resp.query
+          }
+          else {console.log(resp.status);}
+        })
+        .catch(err => console.log(err))
+    }
+  },
+  filters: {
+    showChnIsp(v) {
+      if(v === 'China Mobile') {
+        return '中国移动'
+      }
+    }
+  },
+  created() {
+    this.getIp()
+  }
 };
 </script>
 

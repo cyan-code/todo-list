@@ -152,7 +152,7 @@ export default {
         this.$myBus.$emit('sendWeather' , {weatherInfo: this.weatherInfo})
       })
       .catch(err => {console.log(err);})
-    
+      
   }
 }
 </script>
