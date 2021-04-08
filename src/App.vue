@@ -25,6 +25,11 @@ export default {
     document.addEventListener('gesturestart', function (event) {
       event.preventDefault()
   })
+  },
+  created() {
+    addEventListener("beforeunload", function(e) {
+      localStorage.removeItem('isLogin')
+    });
   }
 }
 </script>

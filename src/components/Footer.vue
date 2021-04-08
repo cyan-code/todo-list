@@ -2,8 +2,8 @@
   <div>
     <footer class="footer animate__animated animate__fadeInUp">
       <div class="content has-text-centered">
-        <p>您的IP: <b>{{ip}}</b></p>
-        <p>ISP: <b>{{isp | showChnIsp}}</b></p>
+        <p>您的IP: <b>{{ip ? ip : '未知'}}</b></p>
+        <p>ISP: <b>{{isp ? isp  : '未知' | showChnIsp}}</b></p>
         <p>
           <strong>TODOLIST</strong> by
           <a href="https://gitee.com/cyanzhn">Cyan</a>. The source code is

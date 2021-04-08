@@ -4,7 +4,7 @@
         <div class="column is-4 mx-4">
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <input class="input" type="email" placeholder="用户名" />
+              <input v-model="usrName" class="input" type="email" placeholder="用户名" />
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
@@ -15,7 +15,7 @@
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input class="input" type="password" placeholder="密码" />
+              <input v-model="pwd" class="input" type="password" placeholder="密码" />
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
@@ -23,7 +23,7 @@
           </div>
           <div class="field">
             <p class="control">
-              <button class="button is-dark">登录</button>
+              <button class="button is-dark" @click="handleLogin">登录</button>
               <button class="button is-dark ml-2">注册</button>
             </p>
           </div>
@@ -35,6 +35,22 @@
 <script>
 export default {
   name: "Login",
+  data() {
+    return {
+      usrName: '',
+      pwd: ''
+    }
+  },
+  methods: {
+    handleLogin () {
+      if( this.usrName === "cyan" && this.pwd === '123') {
+        localStorage.setItem('isLogin', 'true')
+        this.$router.replace('/todo')
+      }else {
+        alert('用户名或密码错误')
+      }
+    }
+  }
 };
 </script>
 
