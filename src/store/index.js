@@ -3,42 +3,33 @@ import Vuex, { Store } from 'vuex'
 
 Vue.use(Vuex);
 
+// 示例数据
+const exampleData = [{
+  id: Math.random(),
+  content: 'example 1',
+  isDone: true
+},{
+  id: Math.random(),
+  content: 'example 2',
+  isDone: false
+}]
+
+const saveTodos2LocalStorage = (store) => {
+  store.subscribe((mutations, state) => {
+    localStorage.setItem('todos', JSON.stringify(state.todos))
+  })
+}
+
 const store = new Store({
   state: {
-    todos: [{
-      id: Math.random(),
-      content: '吃饭',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '睡觉',
-      isDone: false
-    },{
-      id: Math.random(),
-      content: '旅游',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '买菜',
-      isDone: false
-    },{
-      id: Math.random(),
-      content: '烧饭',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '敲代码',
-      isDone: false
-    }],
+    todos: JSON.parse(localStorage.getItem('todos')) || exampleData,
     searchTxt: ''
   },
   getters: {
     finishedTodos(state) {
       return state.todos.filter(todo => todo.isDone === true && todo.content.indexOf(state.searchTxt) != -1)
-      // return state.todos.filter(todo => todo.isDone)
     },
     unfinishedTodos (state) {
-      // return state.todos.filter(todo => !todo.isDone)
       return state.todos.filter(todo => todo.isDone === false && todo.content.indexOf(state.searchTxt) != -1)
     },
   },
@@ -62,7 +53,8 @@ const store = new Store({
   actions: {
     
   },
-  modules: {}
+  modules: {},
+  plugins: [saveTodos2LocalStorage]
 })
 
 export default store
