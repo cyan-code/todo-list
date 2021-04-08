@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="weather is-size-4">{{nowTemp}}&#176;</div >
-    <div class="weather is-size-5">{{nowWeather}}</div>
+    <div class="weather is-size-5">{{nowTemp}}&#176; {{nowWeather}} </div >
     <div class="weather is-size-5">{{countryName}} {{cityName}}</div >
   </div>
 </template>

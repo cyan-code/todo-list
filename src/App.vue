@@ -29,7 +29,7 @@ export default {
   created() {
     addEventListener("beforeunload", function(e) {
       localStorage.removeItem('isLogin')
-    });
+    })
   }
 }
 </script>

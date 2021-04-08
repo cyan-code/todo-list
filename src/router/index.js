@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Login from '@/views/Login.vue'
 import Todo from '@/views/Todo.vue'
+import NotFound from '@/views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -19,14 +20,21 @@ const routes = [
       isAuth: false
     }
   },
-    {
+  {
     path: '/todo',
     name: 'Todo',
     component: Todo,
     meta: {
       isAuth: true
     }
+  },
+  {
+    path: '*',
+    component: NotFound,
+    meta: {
+      isAuth: false
     }
+  }
 ]
 
 const router = new VueRouter({

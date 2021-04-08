@@ -2,8 +2,11 @@
   <div>
     <footer class="footer animate__animated animate__fadeInUp">
       <div class="content has-text-centered">
-        <p>您的IP: <b>{{ip ? ip : '未知'}}</b></p>
-        <p>ISP: <b>{{isp ? isp  : '未知' | showChnIsp}}</b></p>
+        <p class="is-size-7">
+          <b>{{system | showVersion}}</b>&ensp;&nbsp;
+          IP:<b>{{ip ? ip : '未知'}}</b>&ensp;&nbsp;
+          ISP:<b>{{isp ? isp  : '未知' | showChnIsp}}</b>
+        </p>
         <p>
           <strong>TODOLIST</strong> by
           <a href="https://gitee.com/cyanzhn">Cyan</a>. The source code is
@@ -25,7 +28,8 @@ export default {
   data() {
     return {
       isp: '',
-      ip: ''
+      ip: '',
+      system: ''
     }
   },
   methods: {
@@ -40,6 +44,11 @@ export default {
           else {console.log(resp.status);}
         })
         .catch(err => console.log(err))
+    },
+    getBrowser() {
+      var myReg = /\((.+?)\)/
+      this.system = navigator.userAgent.match(myReg)[1]
+      
     }
   },
   filters: {
@@ -58,10 +67,16 @@ export default {
         default: return v
           break;
       }
+    },
+    showVersion(v) {
+      if (v.indexOf('Macintosh') != -1) return 'MACOS'
+      if (v.indexOf('iPhone') != -1) return 'iOS'
+      if (v.indexOf('Windows') != -1) return 'Windows'
     }
   },
   created() {
     this.getIp()
+    this.getBrowser()
   }
 };
 </script>
