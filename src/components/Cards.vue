@@ -92,12 +92,16 @@
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex'
 export default {
   name: 'Cards',
-  props: ['finishedTodos', 'unfinishedTodos'],
+  computed: {
+    ...mapState(['todos']),
+    ...mapGetters(['finishedTodos', 'unfinishedTodos'])
+  },
   methods: {
     emitToggleDone (id) {
-      this.$emit('emitToggleDone', id)
+      this.$store.commit('toggleDone', id)
     },
     emitToggleDelModal (id) {
       this.$emit('emitToggleDelModal' ,id)

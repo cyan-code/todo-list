@@ -8,7 +8,7 @@
           ISP:<b>{{isp ? isp  : '未知' | showChnIsp}}</b>
         </p>
         <p>
-          <strong>TODOLIST</strong> by
+          code by
           <a href="https://gitee.com/cyanzhn">Cyan</a>. The source code is
           licensed
           <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The

@@ -2,13 +2,9 @@
   <div id="app">
     <Search 
       @emitAddNewTodo="addNewTodos"
-      @emitsetSearchTxt="setSearchTxt"
-      @emitShowAllResult="showAllResult"
+      
     />
     <Cards
-      :finishedTodos="finishedTodos" 
-      :unfinishedTodos="unfinishedTodos"
-      @emitToggleDone="toggleDone"
       @emitToggleDelModal="toggleDelModal"
     />
     <Modal 
@@ -28,6 +24,8 @@ import Cards from '@/components/Cards'
 import Modal from '@/components/Modal'
 import Footer from '@/components/Footer'
 
+import {mapGetters, mapState} from 'vuex'
+
 export default {
   name: 'Todo',
   components: {
@@ -39,54 +37,18 @@ export default {
   },
   data() {
     return {
-    todos: [{
-      id: Math.random(),
-      content: '吃饭',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '睡觉',
-      isDone: false
-    },{
-      id: Math.random(),
-      content: '旅游',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '买菜',
-      isDone: false
-    },{
-      id: Math.random(),
-      content: '烧饭',
-      isDone: true
-    },{
-      id: Math.random(),
-      content: '敲代码',
-      isDone: false
-    }],
-    // newTodo: "",
     isSuccessModalActive: false, // 控制添加modal框是否显示
     isDelModalActive: false,
     todoToBeDelId: '', // 当点击删除后，待删除的todo的id
     isSuccessModalAnimate: '',
-    searchTxt: '',
+    // searchTxt: '',
   }
   },
   computed: {
-    finishedTodos() {
-      return this.todos.filter(todo => todo.isDone === true && todo.content.indexOf(this.searchTxt) != -1)
-    },
-    unfinishedTodos () {
-      return this.todos.filter(todo => todo.isDone != true && todo.content.indexOf(this.searchTxt) != -1)
-    }
+    ...mapState(['todos']),
+    ...mapGetters(['', ''])
   },
   methods: {
-    toggleDone(id) {
-      this.todos.map((todo) => {
-        if (todo.id === id) { todo.isDone = !todo.isDone }
-        return todo
-      })
-    },
     toggleDelModal(id) {
       this.isDelModalActive =true;
       this.todoToBeDelId = id
@@ -95,7 +57,7 @@ export default {
       this.isDelModalActive= false
     },
     toggleDelete() {
-      this.todos = this.todos.filter((todo) => todo.id != this.todoToBeDelId)
+      this.$store.commit('toggleDelete', this.todoToBeDelId)
       this.isDelModalActive =false
     },
     addNewTodos(newTodo) {
@@ -117,7 +79,7 @@ export default {
         content: newTodo,
         isDone: false
       }
-      this.todos.unshift(item) // 将新代办push到data
+      this.$store.commit('addNewTodos', item) // 将新代办push到data
       this.isSuccessModalActive = true
       setTimeout(() => {
         this.isSuccessModalAnimate = true
@@ -126,14 +88,13 @@ export default {
         this.isSuccessModalAnimate = false
         this.isSuccessModalActive = false
       }, 1300)
-      this.$refs.newTodoInput.focus()
     },
-    setSearchTxt(txt) {
-      this.searchTxt= txt
-    },
-    showAllResult() {
-      this.searchTxt = ''
-    }
+    // setSearchTxt(txt) {
+    //   this.searchTxt= txt
+    // },
+    // showAllResult() {
+    //   this.searchTxt = ''
+    // }
   },
   created() {}
 }

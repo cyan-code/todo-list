@@ -25,7 +25,7 @@
         <div class="column is-4 is-offset-2">
           <div class="field has-addons">
             <div class=" control is-expanded is-flex">
-              <input class="input is-dark mr-2" type="text" @keyup.enter="emitsetSearchTxt" placeholder="查找待办事项" v-model="searchTxt">
+              <input class="input is-dark mr-2" type="text" @keyup.enter="emitsetSearchTxt" placeholder="查找待办事项" v-model="txt">
               <button class="button is-dark mr-2" @click="emitsetSearchTxt" >搜索</button>
               <button class="button is-dark" @click="emitShowAllResult">显示全部</button>
             </div>
@@ -37,13 +37,19 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 export default {
+  
   name: 'Search',
   data() {
     return {
       newTodo: '',
-      searchTxt: ''
+      txt: ''
     }
+  },
+  computed: {
+    ...mapState(['searchTxt']),
+    ...mapGetters([])
   },
   methods: {
     emitAddNewTodo() {
@@ -52,10 +58,10 @@ export default {
       this.$refs.newTodoInput.focus()
     },
     emitsetSearchTxt() {
-      this.$emit('emitsetSearchTxt', this.searchTxt)
+      this.$store.commit('handleSearchTxt', this.txt)
     },
     emitShowAllResult() {
-      this.$emit('emitShowAllResult')
+      this.$store.commit('handleSearchTxt', '')
     }
   }
 }

@@ -1,23 +1,20 @@
 <template>
   <div>
     <div class="columns my-5 is-centered">
-        <div class="column is-4 mx-4">
+        <div class="column is-4 mx-4" @keyup.enter="handleLogin">
           <div class="field">
             <p class="control has-icons-left has-icons-right">
-              <input v-model="usrName" class="input" type="email" placeholder="用户名" />
+              <input v-model="usrName" class="input is-dark" type="email" placeholder="用户名" />
               <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
+                <i class="fa fa-user-circle"></i>
               </span>
             </p>
           </div>
           <div class="field">
             <p class="control has-icons-left">
-              <input v-model="pwd" class="input" type="password" placeholder="密码" />
+              <input v-model="pwd" class="input is-dark" type="password" placeholder="密码" />
               <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
+                <i class="fa fa-key"></i>
               </span>
             </p>
           </div>
@@ -33,6 +30,7 @@
 </template>
 
 <script>
+import 'font-awesome/css/font-awesome.min.css';
 export default {
   name: "Login",
   data() {

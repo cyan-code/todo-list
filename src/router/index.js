@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Login from '@/views/Login.vue'
-import Todo from '@/views/Todo.vue'
-import NotFound from '@/views/NotFound.vue'
+
+// 异步懒加载,只有这个组件的页面被激活的时候才会加载
+const Todo = () => import(/* webpackChunkName:"Chunk-todo" */'@/views/Todo.vue') 
+const NotFound = () => import(/* webpackChunkName:"Chunk-notFound" */'@/views/NotFound.vue')
 
 Vue.use(VueRouter)
 
